@@ -1,0 +1,53 @@
+h1{
+    color:blue;
+    text-align: center;
+}
+
+/* 
+id = #
+class - .
+
+*/
+/* 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+   */
+#myForm {
+    margin-bottom: 50px;
+  }
+  
+#pokemonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
+body {
+    margin-left: 20px; /* Replace 20px with the desired left margin value */
+    margin-right: 30px; /* Replace 30px with the desired right margin value */
+  }
+  
+
+.mypokeCards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.card {
+    text-align: center;
+  }
+
+div#home1bg{
+    height: 50vh;
+    margin:auto;
+    margin-bottom:0;
+    background-image: url("https://pokemon-planet.com/css/images/headerbg.jpg");
+}
+/* mobile??? */

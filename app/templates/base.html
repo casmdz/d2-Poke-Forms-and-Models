@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+
+<title>Cas</title>
+</head>
+<body>
+
+    <img src="{{ url_for('static', filename='images/pikachu.png') }} " alt="logo" width="auto" height="200">
+    {% include 'nav.html' %}
+
+    
+
+
+    {% block content %}
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+
+<footer class="text-center text-grey" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <div class="d-flex justify-content-center align-items-center">
+        <p class="m-0"><i class="fas fa-home m-1"></i>The RESTful Pokémon API: <a href="https://pokeapi.co/"></i>pokeapi.co </a></p>
+  
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="https://pokeapi.co/docs/v2"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="https://github.com/casmdz"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+    </div>
+    <!-- Grid container -->
+
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+
+</footer>
+
+
+</html>
