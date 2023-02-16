@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--  https://mdbootstrap.com/docs/standard/layout/columns/ -->
+<div class="world-container container-fluid">
+        <div class="world-bg">
+
+            <div class="world-content text-center">
+
+                <h2>POKEMON</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <p>Compare your pokemon, check out other users around the world, tag them and then BATTLE!</p>
+                    </div>
+                </div>
+    
+                <div class="row justify-content-around">
+                    <div class="col-lg-5">
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
+                            </div>
+                        </div> 
+                        <!-- end of card -->
+
+
+                    </div>
+    
+                    <div class="col-lg-5">
+
+
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>username</th>
+                                    <th>pokemon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div><!-- end of row justify content -->
+                
+            </div>  <!-- end of world content -->
+        </div>
+
+
+</div>
+    
+<script src="{{ url_for('static', filename='pokelookup.py') }}"></script>
+
+{% endblock %}

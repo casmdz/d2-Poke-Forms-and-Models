@@ -59,6 +59,8 @@ def loginPage():
                     
             else:
                 print('user doesnt exist')
+                
+            return redirect(url_for('mypokePage'))
             
     return render_template('login.html', form = fx) #html, value
 
@@ -69,12 +71,15 @@ def logoutRoute():
     return redirect(url_for('loginPage'))
 
 
+@app.route('/world')
+def worldPage():
+    return render_template('world.html')
 
 @app.route('/my_poke')
 def mypokePage():
-    return render_template('my_poke.html') #CREATE THIS
+    return render_template('userstuff/my_poke.html')
 
 
 @app.route('/battle')
 def battlePage():
-    return render_template('battle.html') #CREATE THIS
+    return render_template('battle/battle.html') #CREATE THIS
