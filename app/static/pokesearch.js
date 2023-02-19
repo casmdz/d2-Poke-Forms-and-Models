@@ -54,7 +54,7 @@ const addToPage =(p) => {
   const card = document.createElement('div');
   // card.classList.add('my-4');
   card.innerHTML = `
-  <div class="card text-center" style="width: 18rem;">
+  <div class="aboutcard text-center mx-auto" style="width: 30%; ">
     <img src="${p.imgUrl}" class="card-img-top" alt="${p.name}">
     <div class="card-body">
       <h5 class="card-title" >
