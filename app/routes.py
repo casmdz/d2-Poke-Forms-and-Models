@@ -1,6 +1,6 @@
 from app import app 
 from flask import render_template, request, redirect, url_for
-from .forms import UserCreationForm, LoginForm, PostForm
+from .forms import UserCreationForm, LoginForm, PostForm, PokemonSearchForm
 from .models import User
 from sqlalchemy import Delete
 from flask_login import login_user, logout_user, current_user
@@ -15,6 +15,12 @@ def homePage():
 @app.route('/about')
 def aboutPage():
     return render_template('about.html') #CREATE THIS
+
+
+@app.route('/faq')
+def faqPage():
+
+    return render_template('faq.html') 
 
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -59,6 +65,8 @@ def loginPage():
                     
             else:
                 print('user doesnt exist')
+                
+            return redirect(url_for('myprofilePage'))
             
     return render_template('login.html', form = fx) #html, value
 
@@ -69,10 +77,27 @@ def logoutRoute():
     return redirect(url_for('loginPage'))
 
 
+@app.route('/world', methods=["GET", "POST"])
+def worldPage():
+    form = PostForm()
+    # post = PostForm()
+    if request.method == 'POST':
+        if form.validate():
+            title = form.title.data
+            caption = form.caption.data
+            img_url = form.img_url.data
+            
+            
+             #add user to database
+            post = User(title, caption, img_url, current_user.id)
+            post.saveToDB()
+            
+    return render_template('world.html', form=form)
 
-@app.route('/my_poke')
-def mypokePage():
-    return render_template('my_poke.html') #CREATE THIS
+@app.route('/myprofile')
+def myprofilePage():
+# def mypokePage():
+    return render_template('userstuff/myprofile.html')
 
 
 @app.route('/battle')

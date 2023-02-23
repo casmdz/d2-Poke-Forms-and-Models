@@ -17,6 +17,12 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators= [DataRequired()])
     submit = SubmitField()
     
+    
+class PokemonSearchForm(FlaskForm):
+    pokemon = StringField('Pokemon', validators=[DataRequired()])
+    submit = SubmitField('Search')
+    
+
 class PostForm(FlaskForm):
     title = StringField("Title", validators = [DataRequired()])
     img_url = StringField("Image URL", validators = [DataRequired()])

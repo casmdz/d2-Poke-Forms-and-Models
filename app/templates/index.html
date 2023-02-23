@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h1>This is Home</h1>
-    
-    
-<div class="home1">
-    <div id="home1bg">
-        <div class="mobilelogo"></div>
-        <div class="col-md-6 headerleft"></div>
-        <div class="col-md-6 headerright"></div>
-        <div class="headermiddle"><div class="home1logo"></div></div>
-    </div>
-</div>
 
+<header class="home1">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center header-container">
+
+            <div class="hometitle">
+                <h1 class="text-white font-weight-bold">Welcome to Pokemon World</h1>
+                <!-- <hr class="divider" /> -->
+            </div>
+
+            <div class="homesubtitle">
+                <p class="text-white-75 mb-5">{{ homeText }}</p>
+                <a class="btn btn-primary btn-xl" href="/faq">Find Out More</a>
+            </div>
+
+        </div>
+    </div>
+</header>
 
 
 

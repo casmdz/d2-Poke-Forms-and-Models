@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="world-container container-fluid justify-content-around" style="min-height: 100vh; overflow-y: auto;">
+  <div class="world-bg">
+
+    <div class="world-content text-center">
+      <h1 class="tw my-4">New US RUE BROE? search</h1>
+      <p class="pw my-4">Here you should collect your first pokemon, creating your team so that you can battle your
+        friends. Collect up to 5 </p>
+
+      <div class="row">
+        <div class="col-lg-5"><!-- column1 -->
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card Title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
+            </div>
+          </div> <!-- end of card -->
+
+        </div><!-- end column1 -->
+
+        <div class="col-lg-5"> <!-- column2 -->
+          <form method="POST" class="container">
+            {{ form.hidden_tag() }}
+
+            {{ form.title(class="form-control", placeholder="Title") }}
+
+            {{ form.img_url(class="form-control", placeholder="Image URL") }}
+
+            {{ form.caption(class="form-control", placeholder="Caption") }}
+
+            {{ form.submit(class="btn btn-primary") }}
+          </form>
+        </div><!-- end column2-->
+
+
+      </div><!-- end of row justify content -->
+    </div> <!-- end of world content -->
+
+  </div>
+</div> <!-- end world container -->
+
+{% endblock %}

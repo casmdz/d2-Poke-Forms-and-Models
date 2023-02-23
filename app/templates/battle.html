@@ -1,82 +1,78 @@
 {% extends 'base.html' %}
 {% block content %}
+<!--  https://mdbootstrap.com/docs/standard/layout/columns/ -->
+<div class="battle-container container-fluid justify-content-around">
+        <div class="battle-bg">
+
+            <div class="battle-content text-center ">
+
+                <h2>Battle grounds</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <p>Compare your pokemon, check out other users around the world, tag them and then BATTLE!</p>
+                    </div>
+                </div>
+    
+                <div class="row justify-content-around">
+                    <div class="col-lg-5">
 
 
-    {{ my_text }}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
+                            </div>
+                        </div> 
+                        <!-- end of card -->
 
 
+                    </div>
+    
+                    <div class="col-lg-5">
 
-    <div class="container">
-          <div class="p-5 my-4 bg-light rounded-3">
-            <h1>Battle Range</h1>
 
-            <p class="lead">I am getting some inspiration from <a href="https://www.tutorialrepublic.com" class="text-success" target="_blank">tutorialrepublic.com</a> but I will honestly put more time into figuring out flex again, I enjoyed it the first week in the theater assignment</p>
-            <p><a href="https://www.tutorialrepublic.com" target="_blank" class="btn btn-success btn-lg">Button!</a></p>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>username</th>
+                                    <th>pokemon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div><!-- end of row justify content -->
+                
+            </div>  <!-- end of battle (was world) content -->
         </div>
-        <div class="row g-2">
-
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Ditto</h5>
-                      <p class="card-text">
-                        HP: 48 <br>
-                        Attack: 48 <br>
-                        Defense: 48
-                      </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Ditto</h5>
-                      <p class="card-text">
-                        HP: 48 <br>
-                        Attack: 48 <br>
-                        Defense: 48
-                      </p>
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/132.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Ditto</h5>
-                      <p class="card-text">
-                        HP: 48 <br>
-                        Attack: 48 <br>
-                        Defense: 48
-                      </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Ditto</h5>
-                      <p class="card-text">
-                        HP: 48 <br>
-                        Attack: 48 <br>
-                        Defense: 48
-                      </p>
-                    </div>
-                </div>
-            </div>
-              
-
-        </div>
-        <hr>
-
-    </div>
-
+</div> <!-- end battle (was world) container -->
+    
+<script src="{{ url_for('static', filename='pokelookup.py') }}"></script>
 
 {% endblock %}

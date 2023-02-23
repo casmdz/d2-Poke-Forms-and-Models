@@ -42,7 +42,7 @@ const getFormData = async (e) => {
 
     }
 
-    addToPage(myData)
+  addToPage(myData)
 };
 
 //
@@ -52,9 +52,9 @@ const getFormData = async (e) => {
 
 const addToPage =(p) => {
   const card = document.createElement('div');
-  card.classList.add('my-4');
+  // card.classList.add('my-4');
   card.innerHTML = `
-  <div class="card text-center" style="width: 18rem;">
+  <div class="aboutcard text-center mx-auto" style="width: 30%; ">
     <img src="${p.imgUrl}" class="card-img-top" alt="${p.name}">
     <div class="card-body">
       <h5 class="card-title" >
@@ -83,25 +83,8 @@ const addToPage =(p) => {
   }
   container.append(card)
 
-}
+};
 
 
 const myForm = document.getElementById('myForm');
 myForm.addEventListener('submit', getFormData)
-
-
-
-
-
-//   <script>
-
-    // const addToPage = (p) => {
-    //   const card = document.createElement('div');
-    //   card.classList.add('card', 'text-center', 'my-5');
-    //   card.style.width = '18rem';
-    //   card.innerHTML = `
-    //     <img src="${p.imgUrl}" class="card-img-top" alt="${p.name}">
-    //     <div class="card-body">
-    //       <h5 class="card-title">
-    //         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-    //           <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM
