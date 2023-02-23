@@ -1,78 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
 <!--  https://mdbootstrap.com/docs/standard/layout/columns/ -->
-<div class="battle-container container-fluid justify-content-around">
+<!-- <div class="battle-container container-fluid justify-content-around">
         <div class="battle-bg">
-
             <div class="battle-content text-center ">
+ -->
 
-                <h2>Battle grounds</h2>
-                <div class="row">
-                    <div class="col-12">
-                        <p>Compare your pokemon, check out other users around the world, tag them and then BATTLE!</p>
+<section class="battlesection" style="min-height: 100vh; overflow-y: auto;">
+    <div class="battle-container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100">
+
+            <div class="battleheader">
+                <h1 style="text-transform: capitalize;">Battle other users</h1>
+            </div>
+            <div class="battle-container2 text-center">
+                <!-- <div class="row"> -->
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2 g-lg-3">
+
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
                     </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">
+                            <span class="h-16 w-16 rounded-full overflow-hidden flex "><img src="static/images/pokeball.png" style="height:32px;"><br>{{ current_user.nickname }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+                    <div class="col">
+                        <div class="p-3 border bg-light">Row column</div>
+                    </div>
+
+
                 </div>
-    
-                <div class="row justify-content-around">
-                    <div class="col-lg-5">
 
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
-                            </div>
-                        </div> 
-                        <!-- end of card -->
+                <!-- </div>  -->
+                <!-- end row -->
+            </div><!-- end battlecontainer2 -->
 
-
-                    </div>
-    
-                    <div class="col-lg-5">
-
-
-                        <table class="table mt-3">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>name</th>
-                                    <th>username</th>
-                                    <th>pokemon</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-
-                </div><!-- end of row justify content -->
-                
-            </div>  <!-- end of battle (was world) content -->
         </div>
+    </div>
+</section>
 
 
-</div> <!-- end battle (was world) container -->
-    
 <script src="{{ url_for('static', filename='pokelookup.py') }}"></script>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, EqualTo
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, EqualTo, Length
 from sqlalchemy import Delete
 
 class UserCreationForm(FlaskForm):
@@ -17,7 +17,14 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators= [DataRequired()])
     submit = SubmitField()
     
-    
+
+class ProfileUpdateForm(FlaskForm):
+    nickname = StringField("Nickname")
+    bio = TextAreaField("Bio", validators = [Length(max=300)] )  
+    submit = SubmitField()
+#validators=[Length(max=300)]
+        #https://www.digitalocean.com/community/tutorials/how-to-use-and-validate-web-forms-with-flask-wtf 
+
 class PokemonSearchForm(FlaskForm):
     pokemon = StringField('Pokemon', validators=[DataRequired()])
     submit = SubmitField('Search')
