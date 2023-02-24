@@ -18,6 +18,8 @@ login_manager = LoginManager(app)
 def load_user(user_id):
     return User.query.get(user_id)  #added .query from aqlalchemy
 
+login_manager.login_view = 'auth.loginPage'
+
 
 from . import routes 
 from . import models

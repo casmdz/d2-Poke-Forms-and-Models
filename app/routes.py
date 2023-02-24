@@ -1,6 +1,6 @@
 from app import app 
 from flask import render_template, request, redirect, url_for
-from .forms import UserCreationForm, LoginForm, PostForm, PokemonSearchForm, ProfileUpdateForm
+from .forms import UserCreationForm, LoginForm, PostForm, ProfileUpdateForm #PokemonSearchForm
 from .models import User, Post, Likes
 from sqlalchemy import Delete, Update, update
 from flask_login import login_user, logout_user, current_user, login_required
@@ -112,25 +112,44 @@ def myprofilePage():
 # def mypokePage():
     return render_template('userstuff/myprofile.html')
 
+
 @app.route('/editprofile', methods=["GET", "POST"])
 @login_required
 def editprofilePage():
-    # user = User.query.get(id)
-    form = ProfileUpdateForm() #(request.form, obj=current_user)
-    form = ProfileUpdateForm(obj=current_user)
-    if request.method == 'POST' and form.validate_on_submit():
+    
+    
+    form = ProfileUpdateForm(obj=current_user) #(request.form, obj=current_user)
+    if request.method == "POST" and form.validate_on_submit():
         current_user.nickname = form.nickname.data
         current_user.bio = form.bio.data
-        current_user.saveChanges()  # call the saveChanges method to commit changes
+        current_user.avatar_url = form.avatar_url.data
+
+        # current_user.avatar_url = form.avatar_url.data 
+        # nickname = form.nickname.data
+        # bio = form.bio.data
+        # avatar_url = form.avatar_url.data
+        # post.nickname = nickname
+        # post.bio = bio
+        # post.avatar_url = avatar_url
+        
+        
+        
+        #current_user.saveChanges()  # call the saveChanges method to commit changes
+        current_user.saveChanges()
         
         return redirect(url_for('myprofilePage'))
-    
+
     return render_template('userstuff/editprofile.html', form=form)
 
-    #     if request.method == 'POST' and form.validate_on_submit():
-    #         current_user.nickname = form.nickname.data
-    #         current_user.bio = form.bio.data
+#     form = ProfileUpdateForm() #(request.form, obj=current_user)
+    # form = ProfileUpdateForm(obj=current_user)
+    # if request.method == 'POST' and form.validate_on_submit():
+    #     current_user.nickname = form.nickname.data
+    #     current_user.bio = form.bio.data
+    #     # current_user.avatar_url = form.avatar_url.data 
         
+    #     current_user.saveChanges()
+
     #         post = User(current_user.nickname, current_user.bio)
     #         print(User)
     #         post.saveToDB
@@ -141,14 +160,20 @@ def editprofilePage():
     # # Pre-populate the form with the user's current values
     # # form.nickname.data = current_user.nickname
     # # form.bio.data = current_user.bio
-    
-    # return render_template('userstuff/editprofile.html', form=form)
+
 
 
 @app.route('/battle')
 @login_required
 def battlePage():
-    return render_template('battle.html') #CREATE THIS
+    users = User.query.all()
+    return render_template('battle.html', users=users)
+
+@app.route('/user/<int:user_id>')
+def user_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template('user_profile.html', user=user)
+
 
 
 

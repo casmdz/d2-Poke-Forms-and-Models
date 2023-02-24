@@ -10,77 +10,76 @@
             </div>
 
             <div class="myprofile-container">
-                <!-- <div class="row">  -->
+
+<!-- "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" -->
+                 
+        <div class="editprofile-container">
+            <div class="row justify-content-center align-items-center">
+                <div class="card card-editprofile col-sm-12 col-xl-6">
+
+                    <form class="form" method="POST" action="">
+                        {{ form.hidden_tag() }}
+              
+
+                        {% if current_user.avatar_url %}
+                        <img src="{{ current_user.avatar_url }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/pokeball.png') }}" alt="default avatar" class="rounded-circle img-fluid"
+                            style="width: 150px;">
+                        {% endif %}
+
+                        <div class="form-floating">
+
+                            {{ form.avatar_url(size=20, class="form-control", id="floatingavatar") }}
+                            <label for="floatingavatar">Enter url for avatar</label>
+
+                        </div>
+                         
+                          
+
+                        <h4 class="my-3">Current nickname: {{ current_user.nickname }}</h4>
+
+                        <div class="form-group">
+                            {{ form.nickname.label }}<br>
+                            {{ form.nickname(size=20, class="form-control") }}
+                        </div>
+                        <br>
+
+                        <p class="text-muted mb-1">@{{ current_user.username }}</p>
 
 
-                <!-- <div class="col-lg-4 align-items-center"> -->
+                        <div class="card-body">
 
+                            <!-- <div class="input-group no-border">
+                                <input type="text" class="form-control" placeholder="Bio...">
+                            </div> -->
+                            <h4 class="my-3">Current bio: {{ current_user.bio }}</h4>
 
-                <!-- <form action="{{ url_for('editprofilePage') }}" method="POST">
-                        <label for="bio">Bio:</label>
-                        <textarea id="bio" name="bio">
-                        </textarea>
-                        <button type="submit">Save Changes</button>
-                        </form> -->
+                            <div class="form-group">
+                                {{ form.bio.label }}<br>
+                                {{ form.bio(rows=3, class="form-control") }}
+                            </div>
 
-
-                <div class="editprofile-container">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="card card-editprofile col-sm-12 col-xl-6">
-                            <form class="form" method="POST" action="">
-                                {{ form.hidden_tag() }}
-
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                    alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-
-                                <h4 class="my-3">{{ current_user.nickname }}</h4>
-
-                                <div class="form-group">
-                                    {{ form.nickname.label }}<br>
-                                    {{ form.nickname(size=20, class="form-control") }}
-                                </div>
-
-                                <p class="text-muted mb-1">@{{ current_user.username }}</p>
-
-
-                                <div class="card-body">
-
-                                    <!-- <div class="input-group no-border">
-                                        <input type="text" class="form-control" placeholder="Bio...">
-                                    </div> -->
-                                    <div class="form-group">
-                                        {{ form.bio.label }}<br>
-                                        {{ form.bio(rows=5, class="form-control") }}
-                                    </div>
-
-
-
-                                </div>
-
-                                <div class="card-footer text-center">
-                                    <!-- <a href="#pablo" class="btn btn-neutral btn-round btn-lg">done</a> -->
-                                    <button type="submit" class="btn btn-primary btn-round btn-lg">Update Profile</button>
-                                </div>
-
-                            </form>
 
 
                         </div>
-                    </div>
+
+                        <div class="card-footer text-center">
+                            <a href="/myprofile" class="btn btn-secondary btn-round btn-lg">Go back</a>
+                            <button type="submit" class="btn btn-primary btn-round btn-lg">Update Profile</button>
+                        </div>
+
+                    </form>
+
+
                 </div>
-
-
-                <!-- </div> -->
-
-                <!--  </div>  end row -->
-
-
+            </div>
+        </div>
 
 
             </div>
         </div>
 </section>
 
-<div class="myprofile-container"></div>
 
 {% endblock %}
