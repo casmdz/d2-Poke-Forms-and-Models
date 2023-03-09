@@ -180,42 +180,34 @@ header.home1 {
 
 /* WORLD PAGE */
 
-div.world-container {
-  position: relative;
-  overflow: hidden;
-  /* height: 100%; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-}
-
-/* div.world-bg {
-  height: 100vh;
-} */
-div.world-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  /* height: 100%; */
-  height: 100vh;
+section.world1 {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(118, 195, 209, 0.8) 0%, rgba(237, 125, 237, 0.8) 100%),url("images/background-water-cliff.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  /* opacity: 35%; */
   z-index: -1;
-  background-image: url("images/background-water-cliff.png");
-  opacity: 0.35;
-  /* background-size:contain; */
-  background-size: auto;
 }
 
+@media (min-width: 992px) {
+  section.world1 {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    z-index: -1;
+  }
+}
 
-div.world-content {
-  /* position: relative; */
-  z-index: 1;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  width: 100%;
-
+.section-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 
@@ -229,7 +221,6 @@ section.myprofile1 {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-  /* opacity: 35%; */
   z-index: -1;
 }
 

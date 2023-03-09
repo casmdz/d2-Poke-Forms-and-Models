@@ -1,9 +1,13 @@
 from app import app 
-from flask import render_template, request, redirect, url_for
-from .forms import UserCreationForm, LoginForm, PostForm, ProfileUpdateForm #PokemonSearchForm
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from .forms import UserCreationForm, LoginForm, PostForm, ProfileUpdateForm
 from .models import User, Post, Likes
 from sqlalchemy import Delete, Update, update
 from flask_login import login_user, logout_user, current_user, login_required
+import requests
+# from .apiauthhelper import basic_auth_req, token_auth_required
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 
 @app.route('/')
@@ -14,7 +18,7 @@ def homePage():
     
 @app.route('/about')
 def aboutPage():
-    return render_template('about.html') #CREATE THIS
+    return render_template('about.html') 
 
 
 @app.route('/faq')
@@ -58,12 +62,18 @@ def loginPage():
             user = User.query.filter_by(username=username).first()
             if user:
                 #if user exists
-                if user.password == password:
+                if check_password_hash(user.password, password):
+                #user.password == password:
                     login_user(user)
+                    flash(f'Successfully logged in! Welcome back {user.nickname}', category='success')
+                    return redirect(url_for('myprofilePage'))
+
                 else:
-                    print('wrong password')
+                    flash('oops! wrong password', category='danger')
+                    print('oof wrong password')
                     
             else:
+                flash('oops! user does not exist', category='danger')
                 print('sorry that user doesnt exist')
                 
         return redirect(url_for('myprofilePage'))
@@ -77,33 +87,11 @@ def logoutRoute():
     return redirect(url_for('loginPage'))
 
 
-@app.route('/world', methods=["GET", "POST"])
-@login_required
-def worldPage():
-    form = PostForm()
-    # post = PostForm()
-    if request.method == 'POST':
-        if form.validate():
-            title = form.title.data
-            caption = form.caption.data
-            img_url = form.img_url.data
-            
-            
-             #add user to database
-            post = User(title, caption, img_url, current_user.id)
-            post.saveToDB()
-            
-    return render_template('world.html', form=form)
+# @app.route('/pokemoncard', methods=["GET", "POST"])
+# @login_required
+# def testFunc():
 
-# @app.route('/world')
-# def worldPage():
-#     users = User.query.all()
-#     who_i_am_following = {u.id for u in current_user.followed.all()}
-#     for user in users:
-#         if user.id in who_i_am_following:
-#             user.following = True
-            
-#     return render_template('world.html', users = users)
+#     return render_template('perm/pokemoncard.html')
 
 
 @app.route('/myprofile')
@@ -115,6 +103,7 @@ def myprofilePage():
 
 @app.route('/editprofile', methods=["GET", "POST"])
 @login_required
+# @token_auth_required
 def editprofilePage():
     
     
@@ -123,16 +112,6 @@ def editprofilePage():
         current_user.nickname = form.nickname.data
         current_user.bio = form.bio.data
         current_user.avatar_url = form.avatar_url.data
-
-        # current_user.avatar_url = form.avatar_url.data 
-        # nickname = form.nickname.data
-        # bio = form.bio.data
-        # avatar_url = form.avatar_url.data
-        # post.nickname = nickname
-        # post.bio = bio
-        # post.avatar_url = avatar_url
-        
-        
         
         #current_user.saveChanges()  # call the saveChanges method to commit changes
         current_user.saveChanges()
@@ -141,25 +120,6 @@ def editprofilePage():
 
     return render_template('userstuff/editprofile.html', form=form)
 
-#     form = ProfileUpdateForm() #(request.form, obj=current_user)
-    # form = ProfileUpdateForm(obj=current_user)
-    # if request.method == 'POST' and form.validate_on_submit():
-    #     current_user.nickname = form.nickname.data
-    #     current_user.bio = form.bio.data
-    #     # current_user.avatar_url = form.avatar_url.data 
-        
-    #     current_user.saveChanges()
-
-    #         post = User(current_user.nickname, current_user.bio)
-    #         print(User)
-    #         post.saveToDB
-            
-    #         # flash("Profile updated successfully!")
-    #         return redirect(url_for('myprofilePage'))
-    
-    # # Pre-populate the form with the user's current values
-    # # form.nickname.data = current_user.nickname
-    # # form.bio.data = current_user.bio
 
 
 
@@ -169,6 +129,7 @@ def battlePage():
     users = User.query.all()
     return render_template('battle.html', users=users)
 
+
 @app.route('/user/<int:user_id>')
 def user_profile(user_id):
     user = User.query.get_or_404(user_id)
@@ -177,6 +138,31 @@ def user_profile(user_id):
 
 
 
+@app.route('/feed', methods=["GET"])
+def feedPage():
+    feedText = ' should be feed '
+    return render_template('feed.html', rara = feedText) 
+
+
+
+#  MANY POSTS 
+@app.route('/post/<int:post_id>', methods=["GET"])
+@login_required
+def createPost(post_id):
+    form = PostForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            title = form.title.data
+            caption = form.caption.data
+            img_url = form.img_url.data
+            
+            post = Post(title, img_url, caption, current_user.id)
+            post.saveToDB()
+
+    return render_template('hw/createpost.html', form=form)
+
+
+# GET ALL POSTS ON FEED
 @app.route('/posts', methods=["GET"])
 def getPosts():
     posts = Post.query.all()
@@ -187,11 +173,67 @@ def getPosts():
         # a concise way to create a new set by specifying a set of elements based on a condition
         for post in posts:
             if post.id in likes:
-                post.liked= True
+                post.liked = True
                 
     #Find likes based on Post      
-    for post in posts: 
-        post.like_counter = len(Likes.query.filter_by(post_id= post.id).all())
+    # for post in posts: 
+    #     post.like_counter = len(Likes.query.filter_by(post_id= post.id).all())
                
+    return render_template('hw/feed.html', posts = posts)
+
+
+#   SINGLE POST 
+@app.route('/post/<int:post_id>', methods=["GET"])
+def getPost(post_id):
+    post = Post.query.get(post_id)
+    return render_template('hw/singlepost.html', post=post)
+
+
+# @app.route('/post/<int:post_id/update>', methods=["GET", "POST"])
+# @login_required
+# def updatePost(post_id):
+#     post = Post.query.get(post_id)
+#     if current_user!= post.author.id:
+#         return redirect(url_for('getPosts'))
+#     form = PostForm()
+#     if request.method == "POST":
+#         if form.validate():
+#             title= form.title.data
+#             img_url= form.img_url.data
+#             caption= form.caption.data
+            
+#             post.title = title
+#             post.img_url = img_url
+#             post.caption = caption
+#             post.saveChanges()
+#             return redirect(url_for('getPost', post_id=post_id)) 
+#     return render_template('hw/updatepost.html', form=form, post=post)
+
+
+@app.route('/post/<int:post_id>/delete', methods=["GET", "POST"])
+@login_required
+def deletePost(post_id):
+    post = Post.query.get(post_id)
+    if current_user!= post.author.id:
+        return redirect(url_for('getPosts'))
     
-    return render_template('feed.html', posts = posts)
+    post.deleteFromDB()
+    
+    return redirect(url_for('getPosts'))
+
+
+
+# @app.route('/post/<int:post_id/like>', methods=["GET"])
+# @login_required
+# def likePost(post_id):
+#     like_instance = Likes(current_user.id, post_id)
+#     like_instance.saveToDB()
+#     return redirect(url_for('getPosts'))
+
+
+# @app.route('/post/<int:post_id/unlike>', methods=["GET"])
+# @login_required
+# def unlikePost(post_id):
+#     like_instance = Likes.query.filter_by(post_id=post_id).filter_by(user_id=current_user.id).first()
+#     like_instance.deleteFromDB()
+#     return redirect(url_for('getPosts'))

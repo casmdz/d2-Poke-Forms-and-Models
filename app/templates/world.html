@@ -1,78 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<section class="world1" style="min-height: 100vh; overflow-y: auto;">
+  <!-- <div class="world-bg"> -->
 
-<div class="world-container container-fluid justify-content-around" style="min-height: 100vh; overflow-y: auto;">
-  <div class="world-bg">
-
-    <div class="world-content text-center">
-      <h1 class="tw my-4">Catch them all</h1>
-      <p class="pw my-4">Here you should collect your first pokemon, creating your team so that you can battle your
-        friends. Collect up to 5 </p>
+  <div class="container px-4 px-lg-5 h-100">
+    <div class="world-container text-center">
+      <h4 class="pw my-4 text-center">Here you should search for, catch, and create your team of up to 5 pokemon, so that you can battle your
+        friends.</h4>
 
       <div class="row">
-        <div class="col-lg-6"><!-- column1 -->
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card Title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk.</p>
+
+        <div class="col-lg-6"><!-- column1 --> 
+          <!-- This is Poke Search Form  -->
+          
+          <h3>Go ahead and search!</h3>
+
+          <form method = "POST" class="container"> 
+            {{ html_form.hidden_tag() }} 
+
+            <div class="form-group col-6 mx-auto">
+            {{ html_form.pokemon_name(class="form-control", placeholder="enter name") }}
             </div>
-          </div> <!-- end of card -->
+
+            {{ html_form.submit(class="btn btn-primary") }}    
+        </form>
 
         </div><!-- end column1 -->
 
+
+
+
         <div class="col-lg-6"> <!-- column2 -->
-          <form method="POST" class="container">
-            {{ form.hidden_tag() }}
 
-            {{ form.title(class="form-control", placeholder="Title") }}
-
-            {{ form.img_url(class="form-control", placeholder="Image URL") }}
-
-            {{ form.caption(class="form-control", placeholder="Caption") }}
-
-            {{ form.submit(class="btn btn-primary") }}
-          </form>
+          {% if this_pokemon %}
+          
+            {% include '/perm/pokemoncard.html' %}
+          
+          {% endif %}
+          
         </div><!-- end column2-->
 
-
-        <div class="col-lg-6"> 
-          <form method="POST" class="container">
-            {{ form.hidden_tag() }}
-
-            {{ form.title(class="form-control", placeholder="Title") }}
-
-            {{ form.img_url(class="form-control", placeholder="Image URL") }}
-
-            {{ form.caption(class="form-control", placeholder="Caption") }}
-
-            {{ form.submit(class="btn btn-primary") }}
-          </form>
-        </div>
-
-
-        <div class="col-lg-5"><!-- column1 -->
-          <div class="card mb-4"> <!-- my profile card -->
-            <div class="card-body text-center">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                    alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">{{ current_user.nickname }} </h5>
-                <p class="text-muted mb-1">{{ current_user.username }}</p>
-                <p class="text-muted mb-4">bio</p>
-                <div class="d-flex justify-content-center mb-2">
-                    <!-- <button type="button" class="btn btn-primary">Follow</button> -->
-                    <button type="button" class="btn btn-outline-primary ms-1">Edit profile</button>
-                </div>
-            </div>
-          </div> <!-- end my profile card -->
-        </div>
 
 
       </div><!-- end of row justify content -->
     </div> <!-- end of world content -->
 
   </div>
-</div> <!-- end world container -->
+</section> <!-- end world section -->
 
 {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> All posts</h1>
+
+
+    {% for post in posts %}
+    <div class="card" style="width: 18rem;">
+        <a class="text-dark text-decoration-none" href="{{ url_for('getPost', post_id=post.id) }}">
+            <img src="{{ post.img_url }}" class="card-img-top" alt="{{ post.title }}">
+            <div class="card-body">
+            <h5 class="card-title">{{ post.title }} - {{ post.author.username }}</h5>
+            <p class="card-text">{{ post.caption }}</p>
+            </div>    
+        </a>
+        <p>Like count: {{ post.getLikeCounter() }}</p>
+        {% if current_user.is_authenticated %}
+            {% if not post.liked %}
+                <a class="btn btn-success" href="{{ url_for('likePost', post_id=post.id)}}">Like</a>
+            {% else %}
+                <a class="btn btn-danger" href="{{ url_for('unlikePost', post_id=post.id)}}">Unlike</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% endfor %}
+
+<!-- 
+    <form method = "POST" class="container col-4"> 
+        {{ form.hidden_tag() }} 
+        {{ form.title(class="form-control", placeholder="title") }}
+        {{ form.img_url(class="form-control", placeholder="img_url") }}
+        {{ form.caption(class="form-control", placeholder="caption") }}
+
+        {{ form.submit(class="btn btn-primary") }}    
+    </form> -->
+
+
+{% endblock %}

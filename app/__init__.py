@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+from .search.routes import search
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -18,8 +20,11 @@ login_manager = LoginManager(app)
 def load_user(user_id):
     return User.query.get(user_id)  #added .query from aqlalchemy
 
-login_manager.login_view = 'auth.loginPage'
+# login_manager.login_view = 'auth.loginPage'
+login_manager.login_view = 'loginPage'
+#instead of showing them a error page, it will redirect them to the login page
 
+app.register_blueprint(search)
 
 from . import routes 
 from . import models

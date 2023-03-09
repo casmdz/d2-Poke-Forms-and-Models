@@ -29,7 +29,7 @@ class ProfileUpdateForm(FlaskForm):
         #https://www.digitalocean.com/community/tutorials/how-to-use-and-validate-web-forms-with-flask-wtf 
 
 # class PokemonSearchForm(FlaskForm):
-#     pokemon = StringField('Pokemon', validators=[DataRequired()])
+#     pokemon_name = StringField('Pokemon', validators=[DataRequired()])
 #     submit = SubmitField('Search')
     
 

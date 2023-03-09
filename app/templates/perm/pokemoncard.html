@@ -1,0 +1,16 @@
+<div class="pokemoncard border-info" style="width: 14rem; margin-right:auto; margin-left:auto; border: 2px solid; border-radius: 10px; text-transform:capitalize;">
+
+  <img src="{{ this_pokemon.image }}" class="card-img-top" alt="{{ this_pokemon.name }}">
+
+    <h5 class="poke-card-title"><b>{{ this_pokemon.name }}</b></h5>
+
+  <div class="poke-card-body ">
+  
+    <p class="pst-group-item">Type: {{ this_pokemon.type }}</p>
+    <p class="pst-group-item">Base HP: {{ this_pokemon['Base HP'] }}</p>
+    <p class="pst-group-item">Attack: {{ this_pokemon.Attack }}</p>
+    <p class="pst-group-item">Defense: {{ this_pokemon.Defense }}</p>
+    <p class="pst-group-item">Ability: {{ this_pokemon.Ability }}</p>
+
+</div>
+</div>

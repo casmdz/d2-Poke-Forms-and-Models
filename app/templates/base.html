@@ -17,7 +17,19 @@
 <body>
 
     <img src="{{ url_for('static', filename='images/pikachu.png') }} " alt="logo" width="auto" height="50">
-    {% include 'nav.html' %}
+
+    {% include '/perm/nav.html' %}
+    {% with messages = get_flashed_messages(with_categories=True) %} 
+    <!-- https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/  -->
+      {% if messages %}
+        {% for c, m in messages %}
+          <div class="alert alert-{{ c }} alert-dismissible fade show" role="alert">
+            {{ m }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     
 
